@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-int cont=0;
-int cont2=100;
-int precioPorDia=200;
+int espacioOcupado = 0;
+int espacioDisponible = 100;
+int precioPorDia = 200;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,34 +18,26 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::on_boton_clicked()
-{
-    int lugarOcupado;
-    cont++;
-
-    if (cont==100)
-    {
-        cont=0;
+{    
+    if (espacioOcupado < 100) {
+      espacioOcupado++;
+      espacioDisponible--;
     }
-    QString contador = QString :: number(cont);
-    ui->ocup1->setText(contador);
-    lugarOcupado = 100 - cont;
-    QString ocupado = QString :: number(lugarOcupado);
-    ui->disp1->setText(ocupado);
+    asignarValores(espacioOcupado, espacioDisponible);
 }
-
 
 void MainWindow::on_boton2_clicked()
 {
-    int espacioDisp;
-    cont2--;
-
-    if (cont2==0)
-    {
-        cont=100;
+    if (espacioOcupado > 0) {
+      espacioOcupado--;
+      espacioDisponible++;
     }
-    QString contador = QString :: number(cont2);
-    ui->disp1->setText(contador);
-    espacioDisp = 100 - cont2;
-    QString disponible = QString :: number(espacioDisp);
-    ui->ocup1->setText(disponible);
+    asignarValores(espacioOcupado, espacioDisponible);
+}
+
+void asignarValores(int usedSpace, int availableSpace) {
+    QString used = QString :: number(usedSpace);
+    QString free = QString :: number(availableSpace);
+    ui->ocup1->setText(used);
+    ui->disp1->setText(free);
 }
