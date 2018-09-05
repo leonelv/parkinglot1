@@ -22,8 +22,8 @@ void MainWindow::on_boton_clicked()
     if (espacioOcupado < 100) {
       espacioOcupado++;
       espacioDisponible--;
+      asignarValores(espacioOcupado, espacioDisponible);
     }
-    asignarValores(espacioOcupado, espacioDisponible);
 }
 
 void MainWindow::on_boton2_clicked()
@@ -31,8 +31,8 @@ void MainWindow::on_boton2_clicked()
     if (espacioOcupado > 0) {
       espacioOcupado--;
       espacioDisponible++;
+      asignarValores(espacioOcupado, espacioDisponible);
     }
-    asignarValores(espacioOcupado, espacioDisponible);
 }
 
 void asignarValores(int usedSpace, int availableSpace) {
